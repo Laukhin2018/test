@@ -27,6 +27,8 @@ namespace Beehive_Management_System
             return comsumption;
         }
 
+        хуй
+
         public int ShiftsLeft
         {
             get
