@@ -30,10 +30,14 @@ namespace Beehive_Management_System
 
         public string WorkTheNextShift()
         {
+            double honeyConsumed = HoneyConsumptionRate();
+
             shiftNumber++;
             string report = "Отчет для смены#" + shiftNumber + "\r\n";
             for (int i = 0; i < workers.Length; i++)
             {
+                honeyConsumed += workers[i].HoneyConsumptionRate();
+
                 if (workers[i].DidYouFinish())
                     report += "Рабочий #" + (i + 1) + " закончил работу\r\n";
                 if (String.IsNullOrEmpty(workers[i].CurrentJob))
@@ -46,6 +50,9 @@ namespace Beehive_Management_System
                     report += "Рабочий #" + (i + 1) + " закончит ‘"
                     + workers[i].CurrentJob + "’ после этой смены\r\n";
             }
+
+            report += "Total honey consumed for the shift: " + honeyConsumed + " units\r\n";
+
             return report;
         }
     }
