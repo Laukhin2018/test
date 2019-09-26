@@ -18,6 +18,15 @@ namespace Beehive_Management_System
             this.jobsICanDo = jobsICanDo;
         }
 
+        const double honeyUnitsPerShiftWorked = .65;
+
+        public override double HoneyConsumptionRate()
+        {
+            double comsumption = base.HoneyConsumptionRate();
+            comsumption += shiftsToWork * honeyUnitsPerShiftWorked;
+            return comsumption;
+        }
+
         public int ShiftsLeft
         {
             get
@@ -37,8 +46,7 @@ namespace Beehive_Management_System
 
         private string[] jobsICanDo;
         private int shiftsToWork;
-        private int shiftsWorked;
-        public double HoneyConsumptionRate1;
+        private int shiftsWorked;       
 
         public bool DoThisJob (string job, int numberOfShifts)
         {
@@ -71,11 +79,6 @@ namespace Beehive_Management_System
                 return false;
         }
 
-        public override double HoneyConsumptionRate()
-        {
-
-            return HoneyConsumptionRate1 = base.HoneyConsumptionRate();
-            HoneyConsumptionRate1 += 0.65; 
-        }
+       
     }
 }
